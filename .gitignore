@@ -1,0 +1,20 @@
+# Mesaje și abonamente salvate local
+**/data/
+
+# Executabile și rezultate generate
+*.exe
+*.exe~
+*.test
+*.out
+coverage/
+
+# Fișiere locale ale editorului și sistemului
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Configurări locale cu secrete
+.env
+.env.*
+!.env.example

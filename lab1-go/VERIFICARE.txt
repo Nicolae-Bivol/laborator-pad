@@ -1,0 +1,25 @@
+Verificare efectuata: 12 octombrie 2026
+Mediu: Linux amd64, Go 1.24.2
+
+Compilare: PASS (go build -buildvcs=false; metadatele Git nu erau disponibile in mediul de lucru)
+go vet ./...: PASS
+go test -race -v ./...: PASS, fara data races raportate
+
+Teste automate incluse:
+- TestRoutingContractAndDedup: PASS
+- TestConcurrentPublish: PASS
+- TestPubSubPushAndOrdering: PASS
+- TestCrashAfterLocalEffect: PASS
+- TestNackDeadLetter: PASS
+- TestMemoryMode: PASS
+
+Verificare suplimentara cu executabil compilat, socket-uri TCP reale si procese separate:
+- Cadere reala a receiverului cu exit 23 dupa salvare, inainte de ACK: PASS
+- Repornire receiver, relivrare si un singur efect local: PASS
+- Fan-out catre doi abonati info, replay istoric: PASS
+- Mesaj alert nu ajunge la abonatii info: PASS
+- Restart broker, restaurare stare si reconectare automata a receiverilor: PASS
+- Cadru JSON invalid respins fara oprirea brokerului: PASS
+
+Comenzile Windows sunt furnizate in README.md. Rularea pe Windows nu a fost verificata
+in acest mediu. Proiectul foloseste biblioteca standard Go si cai relative portabile.
